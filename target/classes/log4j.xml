@@ -1,38 +1,68 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+
 <!--
-  Licensed to the Apache Software Foundation (ASF) under one or more
-  contributor license agreements.  See the NOTICE file distributed with
-  this work for additional information regarding copyright ownership.
-  The ASF licenses this file to You under the Apache License, Version 2.0
-  (the "License"); you may not use this file except in compliance with
-  the License.  You may obtain a copy of the License at
+  ~ 版权所有:杭州火图科技有限公司
+  ~ 地址:浙江省杭州市滨江区西兴街道阡陌路智慧E谷B幢4楼
+  ~
+  ~ (c) Copyright Hangzhou Hot Technology Co., Ltd.
+  ~ Floor 4,Block B,Wisdom E Valley,Qianmo Road,Binjiang District
+  ~ 2013-2015. All rights reserved.
+  -->
 
-      http://www.apache.org/licenses/LICENSE-2.0
 
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
+<!--
+<Configuration status="INFO" debug="true">
+<Appenders>
+<Console name="Console" target="SYSTEM_OUT">
+<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %p [%c] %m%n"/>
+</Console>
+<RollingFile name="ServerDailyRollingFile" filename="logs/mallduobao/app.log"
+         filePattern="logs/mallduobao/$${date:yyyy-MM}/app-%d{yyyy-MM-dd-HH}-%i.log">
+<PatternLayout>
+<pattern>%d - [%p] [%c] %m%n</pattern>
+</PatternLayout>
+<Policies>
+<TimeBasedTriggeringPolicy interval="24" modulate="true"/>
+<SizeBasedTriggeringPolicy size="250 MB"/>
+</Policies>
+</RollingFile>
+</Appenders>
+
+<Loggers>
+
+<Root level="debug">
+<AppenderRef ref="Console"/>
+<AppenderRef ref="ServerDailyRollingFile"/>
+</Root>
+</Loggers>
+</Configuration>
+
+
 -->
-<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 
-<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
-  <!--
-    - This is a sample configuration for log4j.
-    - It simply just logs everything into a single log file.
-    - Note, that you can use properties for value substitution.
-    -->
-  <appender name="CORE" class="org.apache.log4j.FileAppender">
-    <param name="File"   value="${org.apache.cocoon.work.directory}/cocoon-logs/log4j.log" />
-    <param name="Append" value="false" />
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true"  xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+  <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
     <layout class="org.apache.log4j.PatternLayout">
-      <param name="ConversionPattern" value="%d %-5p %t %c - %m%n"/>
+      <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %p [%c] %m%n"/>
+    </layout>
+  </appender>
+
+  <appender name="ServerDailyRollingFile" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+    <param name="File" value="logs/shopp-web/hbm_web.log"/>
+    <param name="Append" value="true"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d - %m%n"/>
     </layout>
   </appender>
 
   <root>
-    <priority value="${org.apache.cocoon.log4j.loglevel}"/>
-    <appender-ref ref="CORE"/>
+    <level value="info"/>
+    <appender-ref ref="ServerDailyRollingFile"/>
+    <appender-ref ref="stdout"/>
   </root>
+
+
 </log4j:configuration>

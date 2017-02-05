@@ -67,7 +67,6 @@ public class MVCConfig extends WebMvcConfigurerAdapter  {
 
   Spring MVC视图解析器
 
-  TemplateResolver <- TemplateEngine <- ViewResolver
 
  ****************************************************************
 */

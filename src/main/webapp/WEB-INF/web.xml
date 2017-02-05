@@ -8,9 +8,9 @@
     <display-name>网络购物平台</display-name>
 
     <!--首页访问配置-->
-    <welcome-file-list>
-        <welcome-file>test.jsp</welcome-file>
-    </welcome-file-list>
+ <!-- <welcome-file-list>
+        <welcome-file>src.test.jsp</welcome-file>
+    </welcome-file-list>-->
 
     <!-- 全站编码过滤器 -->
       <filter>

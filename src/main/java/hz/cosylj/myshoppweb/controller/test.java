@@ -45,10 +45,7 @@ public class test {
             System.out.println("++++++++++++++++++用户名不存在================");
         }
 
-
-
         System.out.println("---------------"+user1.getId()+"--------------"+user1.getUsername()+"--------");
-        return null;
-
+        return "/login_v2.html";
     }
 }

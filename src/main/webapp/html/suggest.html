@@ -191,7 +191,7 @@
                                 <li>初始化插件</li>
                             </ol>
 
-                            <pre>var bsSuggest = $("input#test").bsSuggest({
+                            <pre>var bsSuggest = $("input#src.test").bsSuggest({
       url: "/rest/sys/getuserlist?keyword="
     })</pre>
 
@@ -200,11 +200,11 @@
                             <h4>方法调用</h4>
 
                             <ol>
-                                <li>禁用提示： <code>$("input#test").bsSuggest("disable");</code>
+                                <li>禁用提示： <code>$("input#src.test").bsSuggest("disable");</code>
                                 </li>
-                                <li>启用提示： <code>$("input#test").bsSuggest("enable");</code>
+                                <li>启用提示： <code>$("input#src.test").bsSuggest("enable");</code>
                                 </li>
-                                <li>销毁插件： <code>$("input#test").bsSuggest("destroy");</code>
+                                <li>销毁插件： <code>$("input#src.test").bsSuggest("destroy");</code>
                                 </li>
                             </ol>
 
@@ -212,7 +212,7 @@
 
                             <p>dataRequestSuccess: 当 AJAX 请求数据成功时触发，并传回结果到第二个参数</p>
 
-                            <pre>$("input#test").on("dataRequestSuccess", function (event, result) {
+                            <pre>$("input#src.test").on("dataRequestSuccess", function (event, result) {
     console.log(result); 
 });</pre>
                             <p>onSetSelectValue：当从下拉菜单选取值时触发，并传回设置的数据到第二个参数 onUnsetSelectValue：当设置了 idField，且自由输入内容时触发（与背景警告色显示同步）</p>

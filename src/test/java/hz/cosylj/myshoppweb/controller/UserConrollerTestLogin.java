@@ -1,11 +1,9 @@
 package hz.cosylj.myshoppweb.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import hz.cosylj.myshoppweb.base.baseClass;
 import hz.cosylj.myshoppweb.boot.MVCConfig;
 
 import hz.cosylj.myshoppweb.entity.User;
-import org.eclipse.persistence.internal.jaxb.many.MapEntry;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,10 +19,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.servlet.View;
 
 
-import java.util.HashMap;
 import java.util.Map;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -36,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 
 
-@ActiveProfiles("test")
+@ActiveProfiles("src/test")
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = { MVCConfig.class})
