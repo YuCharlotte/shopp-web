@@ -50,7 +50,7 @@ public class UserController {
             return  new ModelAndView("index.html",usermap);
         }
         usermap.put("message","用户名或密码错误，请仔细核对！！！");
-        return  new ModelAndView("login_v2.html",usermap);
+        return  new ModelAndView("aa.html",usermap);
 
 
     }

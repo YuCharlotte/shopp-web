@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:trh="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 
@@ -44,7 +44,7 @@
                     <input type="password" class="form-control" name="password" placeholder="密码" required="">
                 </div>
 
-                <!--   <div type="hidden">
+                <!--   <div  th:if="${#usermap.isEmpty(status)}" type="hidden">
                        <span th:text="${usermap.message}">用户名和密码错误</span>
                    </div>-->
 
