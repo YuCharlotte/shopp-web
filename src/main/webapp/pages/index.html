@@ -4,16 +4,58 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="author" content="Jing姐,Jun姐">
-    <meta name="keywords" content="xxx">
-    <meta name="description" content="xxx">
+    <meta name="keywords" content="Shopping">
+    <meta name="description" content="ShoppingWeb">
 
-    <title>Shopping Web - 管理系统</title>
+    <title>ShoppingWeb - 管理系统</title>
 
-    <link href="http://resali.huobanplus.com/cdn/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://resali.huobanplus.com/cdn/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    
+	<link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/index.css">
 </head>
 <body>
-
+	<header>
+		<div class="logo fl">Buy+</div>
+        <ul class="head-right fr">
+	        <li class="user fl">
+	        	<a href="#">
+		        	<img class="user-img fl" alt="image" src="../resources/img/profile_small.jpg" />
+		        	<div class="user-name fl">
+		        		<span><strong>Beaut-zihan</strong></span>
+	                	<p>超级管理员</p>
+		        	</div>
+	        	</a>
+	        </li>
+            <li class="fl">
+            	<a href="#">联系我们</a>
+            </li>
+            <li class="fl">
+            	<a href="../login.html">安全退出</a>
+            </li>
+        </ul>
+	</header>
+    <!--左侧导航栏-->
+    <div class="sidebar">
+        <ul class="sidenav">
+            <li>
+                <a class="nav-item" target="iframename" href="welcome.html">欢迎页</a>
+            </li>
+            <li>
+                <a class="nav-item" target="iframename" href="users.html">用户管理</a>
+            </li>
+            <li>
+                <a class="nav-item" target="iframename" href="goods.html">商品管理</a>
+            </li>
+            <li>
+                <a class="nav-item" target="iframename" href="404.html">404</a>
+            </li>
+            <li>
+                <a class="nav-item" target="iframename" href="#">主页示例四</a>
+            </li>
+        </ul>
+    </div>
+    <!--左侧导航结束-->
+    <div>
+    	<iframe src="welcome.html" name="iframename"></iframe>
+    </div>
 </body>
 </html>

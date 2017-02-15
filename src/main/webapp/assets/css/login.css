@@ -1,0 +1,59 @@
+.login {
+	width: 302px;
+	margin: 100px auto;
+	padding: 10px;
+}
+.logo {
+	color: #99cccc;
+	font-size: 45px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+.login h3 {
+	color: #ccc;
+	font-size: 30px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+.login h4 {
+	color: #000;
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+.login input {
+	width: 300px;
+	height: 35px;
+	margin-bottom: 10px;
+	font-size: 14px;
+	line-height: 35px;
+	text-indent: .5em;
+	border: 1px solid #bbb;
+}
+.login input[type=checkbox] {
+	display: inline-block;
+	width: inherit;
+	height: inherit;
+	margin-right: 3px;
+}
+.login button {
+	width: 302px;
+	height: 35px;
+	color: #fff;
+	background-color: #99cccc;
+	margin-bottom: 10px;
+	font-size: 16px;
+	cursor: pointer;
+}
+.login button:hover {
+	background-color: #6699cc;
+}
+.login .tip {
+	color: #333;
+	text-align: right;
+}
+.login .tip a {
+	color: #333;
+}
+.login .tip a:hover {
+	color: #6699cc;
+}

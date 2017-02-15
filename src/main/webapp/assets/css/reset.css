@@ -1,0 +1,49 @@
+/*简单的CSS Reset Version 1.0*/
+* {
+    margin: 0;
+    padding: 0;
+}
+img {
+    border: none;
+}
+body, button, input, select, textarea {
+    font: 12px/1 "Microsoft YaHei", Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+}
+i {
+    font-style: normal;
+}
+s {
+    text-decoration: none;
+}
+b {
+    font-weight: normal;
+}
+ul, ol {
+    list-style: none;
+}
+a, a:hover {
+    text-decoration: none;
+    color: #000;
+}
+button {
+    border: none;
+}
+
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.clearfix {
+    clear: both;
+}
+
+.clearfix::after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+input, textarea {
+    outline: none;
+}
