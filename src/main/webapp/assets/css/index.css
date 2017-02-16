@@ -42,10 +42,12 @@ header {
 	line-height: 20px;
 }
 .sidebar {
+	position: fixed;
+	top: 56px;
+	left: 0;
 	width: 200px;
 	height: 100%;
 	background-color: #336699;
-	padding-top: 56px;
 	box-sizing: border-box;
 }
 .sidenav {
@@ -65,4 +67,18 @@ header {
 }
 .nav-item {
 	color: #eee;
+}
+.main {
+	position: absolute;
+	top: 0;
+	left: 200px;
+	right: 0;
+
+	height: 100%;
+	padding-top: 56px;
+	box-sizing: border-box;
+}
+iframe {
+	width: 100%;
+	height: 100%;
 }
