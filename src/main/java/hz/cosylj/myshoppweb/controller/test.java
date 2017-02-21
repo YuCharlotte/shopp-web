@@ -47,5 +47,6 @@ public class test {
 
         System.out.println("---------------"+user1.getId()+"--------------"+user1.getUsername()+"--------");
         return "/login_v2.html";
+
     }
 }

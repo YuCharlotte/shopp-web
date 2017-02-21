@@ -10,6 +10,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -48,6 +49,12 @@ public class MVCConfig extends WebMvcConfigurerAdapter  {
 
     public MVCConfig() {
         super();
+    }
+
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        // 开启默认转发
+        configurer.enable();
     }
 
 
@@ -118,6 +125,7 @@ public class MVCConfig extends WebMvcConfigurerAdapter  {
     {
         SpringResourceTemplateResolver springResourceTemplateResolver=new SpringResourceTemplateResolver();
         springResourceTemplateResolver.setApplicationContext(this.applicationContext);
+        springResourceTemplateResolver.setCharacterEncoding("utf-8");
         springResourceTemplateResolver.setTemplateMode("html5");
         //springResourceTemplateResolver.setPrefix("/html");
        // springResourceTemplateResolver.setSuffix(".html");
