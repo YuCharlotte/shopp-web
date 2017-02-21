@@ -2,6 +2,7 @@ html, body {
 	height: 100%;
 }
 header {
+	z-index: 999;
 	position: fixed;
 	width: 100%;
 	height: 56px;
@@ -73,12 +74,12 @@ header {
 	top: 0;
 	left: 200px;
 	right: 0;
-
 	height: 100%;
 	padding-top: 56px;
 	box-sizing: border-box;
 }
 iframe {
+	display: block;
 	width: 100%;
 	height: 100%;
 }
