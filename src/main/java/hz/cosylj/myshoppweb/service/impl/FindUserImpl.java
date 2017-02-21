@@ -23,14 +23,15 @@ public class FindUserImpl implements FindUserService {
 
 
        User user=userRepository.findByUsername(username);
+
         if(user!=null)
         {
-           if (user.getPassword()==password)
+
+           if (user.getPassword().equals(password))
            {
-                return user;
+               return user;
            }
         }
-
         return null;
     }
 
