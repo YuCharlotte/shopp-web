@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
@@ -20,8 +22,9 @@
 	        	<a href="#">
 		        	<img class="user-img fl" alt="image" src="../resources/img/profile_small.jpg" />
 		        	<div class="user-name fl">
-		        		<span><strong>Beaut-zihan</strong></span>
-	                	<p>超级管理员</p>
+
+		        		<!--/*@thymesVar id="user" type="hz.cosylj.myshoppweb.entity.User"*/-->
+		        		<span th:text="${user.useridentity}"><strong>Beaut-zihan</strong></span>
 		        	</div>
 	        	</a>
 	        </li>

@@ -59,8 +59,8 @@ public class eventest
     {
 /*
 
-        FindUserService FindUserService=new findUserImpl();
-        FindUserService.login("cosylj","123456");
+        UserOperService UserOperService=new findUserImpl();
+        UserOperService.login("cosylj","123456");
 */
 
 

@@ -1,19 +1,18 @@
 package hz.cosylj.myshoppweb.controller;
 
 import hz.cosylj.myshoppweb.entity.User;
-import hz.cosylj.myshoppweb.service.FindUserService;
+import hz.cosylj.myshoppweb.model.ApiResultMode;
+import hz.cosylj.myshoppweb.model.RegisterMode;
+import hz.cosylj.myshoppweb.repository.UserRepository;
+import hz.cosylj.myshoppweb.service.UserOperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
-import java.util.HashMap;
-import java.util.Map;
+
 
 
 /**
@@ -26,55 +25,103 @@ public class UserController {
 
 
     @Autowired
-    private FindUserService findUserService;
+    private UserOperService userOperService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping(value = "/")
     public String login(){
         return "login.html";
     }
 
-
-
-
     /**
      *
-     * @param usernema
-     * @param password
+     * 用户登入
+     * @param userName
+     * @param passWord
      * @return
      */
 
-    //用户登入
     @RequestMapping(value="/login" )
-    public ModelAndView login(@RequestParam(value = "username") String usernema, @RequestParam(value = "password") String password , Model model)
+    public ModelAndView login(@RequestParam(value = "username") String userName, @RequestParam(value = "password") String passWord )
     {
-
-        Map<String,Object> usermap=new HashMap<String,Object>();
+        String name=userName.trim();
+        String word=passWord.trim();
+      //  Map<String,Object> userMap=new HashMap<String,Object>();
         ModelAndView modelAndView=new ModelAndView();
-        User user=findUserService.login(usernema,password);
+        User user= userOperService.login(name,word);
         if (user!=null)
         {
-            usermap.put("user",user);
+          //  userMap.put("user",user);
             modelAndView.setViewName("/pages/index.html");
-            modelAndView.addObject(usermap);
+            modelAndView.addObject("user",user);
         }else{
            // usermap.put("message","用户名或密码错误，请仔细核对！！！");
             modelAndView.setViewName("/login.html");
             modelAndView.addObject("message","用户名或密码错误，请仔细核对！！！");
-           // model.addAttribute("message","用户名或密码错误，请仔细核对！！！");
         }
           return modelAndView;
     }
 
+
     /**
-     *
-     * @param usermodel 用户模型
+     * 跳转到用户注册页面
      */
 
-    //用户注册
+    @RequestMapping(value = "/goToRegisterPage")
+    public  String goToRegisterPage()
+    {
+
+       return "pages/register.html";
+    }
 
 
 
-    //校验用户名
+    /**
+     * 用户注册,成功进入login页
+     * @param RegisterMode
+     */
+    @RequestMapping(value = "/register")
+    public String register(RegisterMode RegisterMode)
+    {
+        if (RegisterMode!=null)
+        {
+            User user=new User();
+            user.setUsername(RegisterMode.getUserName());
+            user.setPassword(RegisterMode.getPassWord());
+            userOperService.registerUser(user);
+            return "login.html";
+        }
+        return "pages/register.html" ;
+    }
+
+
+
+
+    /**
+     * 校验用户名是否可以使用
+     *
+     * @param userName  用户名
+     */
+    @RequestMapping(value="/checkUserName")
+    @ResponseBody
+    public ApiResultMode checkUsername(@RequestParam(value="username") String userName)
+    {
+
+        ApiResultMode apiResultMode=new ApiResultMode();
+        User user=userRepository.findByUsername(userName);
+        if (user!=null)
+        {
+            apiResultMode.setMessage("该用户名已经存在！！");
+            apiResultMode.setCode("400");
+            return apiResultMode;
+        }
+
+            apiResultMode.setMessage("该用户可以使用！！");
+            apiResultMode.setCode("200");
+            return  apiResultMode;
+    }
 
     //忘记密码
 

@@ -29,7 +29,8 @@ header {
 	line-height: 56px;
 }
 .user {
-	margin-top: 5px;
+	margin-top: 8px;
+	width: 150px;
 }
 .user-img {
 	width: 40px;
@@ -39,8 +40,7 @@ header {
 	margin-right: 5px;
 }
 .user-name {
-	height: 40px;
-	line-height: 20px;
+	line-height: 40px;
 }
 .sidebar {
 	position: fixed;

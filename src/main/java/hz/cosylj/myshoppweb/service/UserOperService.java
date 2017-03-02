@@ -7,11 +7,11 @@ import hz.cosylj.myshoppweb.entity.User;
  */
 
 
-public interface FindUserService {
+public interface UserOperService {
 
 
 
      User login(String username,String password);
 
-     User registerUser (User user);
+     void registerUser (User user);
 }
