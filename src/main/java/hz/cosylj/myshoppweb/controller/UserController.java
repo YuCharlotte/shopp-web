@@ -1,5 +1,6 @@
 package hz.cosylj.myshoppweb.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import hz.cosylj.myshoppweb.entity.User;
 import hz.cosylj.myshoppweb.model.ApiResultMode;
 import hz.cosylj.myshoppweb.model.RegisterMode;
@@ -46,11 +47,11 @@ public class UserController {
     @RequestMapping(value="/login" )
     public ModelAndView login(@RequestParam(value = "username") String userName, @RequestParam(value = "password") String passWord )
     {
-        String name=userName.trim();
-        String word=passWord.trim();
+        /*String name=userName.trim();
+        String word=passWord.trim();*/
       //  Map<String,Object> userMap=new HashMap<String,Object>();
         ModelAndView modelAndView=new ModelAndView();
-        User user= userOperService.login(name,word);
+        User user= userOperService.login(userName,passWord);
         if (user!=null)
         {
           //  userMap.put("user",user);
@@ -104,23 +105,23 @@ public class UserController {
      *
      * @param userName  用户名
      */
-    @RequestMapping(value="/checkUserName")
+    @RequestMapping(value="/checkUserName",produces = "application/json; charset=utf-8")
     @ResponseBody
-    public ApiResultMode checkUsername(@RequestParam(value="username") String userName)
+    public String checkUsername(@RequestParam(value="username") String userName)
     {
 
         ApiResultMode apiResultMode=new ApiResultMode();
         User user=userRepository.findByUsername(userName);
         if (user!=null)
         {
-            apiResultMode.setMessage("该用户名已经存在！！");
+            apiResultMode.setMessage("该用户已经存在!!");
             apiResultMode.setCode("400");
-            return apiResultMode;
+            return JSONObject.toJSONString(apiResultMode);
         }
 
-            apiResultMode.setMessage("该用户可以使用！！");
+            apiResultMode.setMessage("该用户不存在!!");
             apiResultMode.setCode("200");
-            return  apiResultMode;
+            return JSONObject.toJSONString(apiResultMode);
     }
 
     //忘记密码

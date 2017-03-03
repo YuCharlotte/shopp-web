@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>welcome</title>
@@ -9,7 +9,8 @@
 </head>
 <body>
 	<div id="welcome">
-		<h1>您好，亲爱的<span class="username">xx</span>：</h1>
+		<h1>您好，亲爱的<!--/*@thymesVar id="user" type="hz.cosylj.myshoppweb.entity.User"*/-->
+		<span class="username" th:text="${user.username}">xx</span>：</h1>
 		<h2>欢迎回到Buy+</h2>
 		<p>在这里，您将体验到宾至如归的服务</p>
 	</div>
