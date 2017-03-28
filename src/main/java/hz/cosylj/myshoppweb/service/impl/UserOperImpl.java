@@ -3,7 +3,7 @@ package hz.cosylj.myshoppweb.service.impl;
 
 import hz.cosylj.myshoppweb.entity.User;
 import hz.cosylj.myshoppweb.repository.UserRepository;
-import hz.cosylj.myshoppweb.service.FindUserService;
+import hz.cosylj.myshoppweb.service.UserOperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class FindUserImpl implements FindUserService {
+public class UserOperImpl implements UserOperService {
 
     @Autowired
     UserRepository userRepository;
@@ -37,7 +37,11 @@ public class FindUserImpl implements FindUserService {
 
 
     //用户注册
-    public User registerUser(User user) {
-        return null;
+    public void registerUser(User user) {
+        if(user!=null)
+        {
+            userRepository.saveAndFlush(user);
+        }
+
     }
 }

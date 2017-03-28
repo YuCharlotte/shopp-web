@@ -18,10 +18,9 @@ import javax.persistence.Id;
 @Setter
 public class User {
 
-
-    /*
-    * 用户id
-    * */
+    /**
+     * 用户id
+     */
     @Id
     @GeneratedValue(generator = "uuidGenerator")
     @GenericGenerator(name = "uuidGenerator", strategy = "uuid")
@@ -29,32 +28,41 @@ public class User {
     private Long id;
 
 
-    /*
-  * 用户名称
-  * */
+    /**
+     * 用户名
+     */
     @Column
     private  String username;
 
 
-    /*
-    * 登入密码
-* */
+    /**
+     * 登入密码
+     */
+
     @Column
     private  String password;
 
 
 
-    /*用户头像*/
+    /**
+     * 用户头像
+     */
+
     @Column
     private String headimg;
 
 
-    /*用户住址*/
+    /**
+     * 用户住址
+     */
+
     @Column
     private  String address;
 
 
-   /* 用户身份*/
+    /**
+     * 用户身份
+     */
     @Column
     private  String useridentity;
 

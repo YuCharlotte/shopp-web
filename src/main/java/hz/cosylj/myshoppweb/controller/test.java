@@ -1,9 +1,7 @@
 package hz.cosylj.myshoppweb.controller;
 
 
-import hz.cosylj.myshoppweb.entity.Goods;
 import hz.cosylj.myshoppweb.entity.User;
-import hz.cosylj.myshoppweb.repository.GoodsRepository;
 import hz.cosylj.myshoppweb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,17 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class test {
 
 
-    @Autowired
-    private GoodsRepository goodsRepository;
+
     @Autowired
     private UserRepository userRepository;
 
     @RequestMapping(value = "/aa", method = RequestMethod.GET)
     public String indext(String username,  String goodsname) {
-        Goods goods=new Goods();
-        goods.setId(2L);
-        goods.setName(goodsname);
-        goodsRepository.save(goods);
 
 
         User user=new User();

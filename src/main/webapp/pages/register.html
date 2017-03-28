@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
@@ -17,15 +17,16 @@
         <h1 class="logo">Buy+</h1>
         <h3>欢迎注册 Buy+</h3>
         <h4>创建一个Buy+新账户</h4>
-        <form id="verifyform" role="form" action="login.html">
-            <div class="info">
-                <input name="username" type="text" ver-data="username" placeholder="请输入用户名" required="">
+        <!--/*@thymesVar id="registerMode" type="hz.cosylj.myshoppweb.model.RegisterMode"*/-->
+        <form id="verifyform" role="form" th:action="@{/user/register}">
+            <div class="info form-username">
+                <input name="userName" type="text" ver-data="username" placeholder="请输入用户名" required="">
             </div>
-            <div class="info">
-                <input name="pass" type="password" ver-data="password" placeholder="请输入密码" required="">
+            <div class="info form-password">
+                <input name="passWord" type="password" ver-data="password" placeholder="请输入密码" required="">
             </div>
-            <div class="info">
-                <input name="repass" type="password" ver-data="repass" placeholder="请再次输入密码" required="">
+            <div class="info form-password">
+                <input name="comfigPwd" type="password" ver-data="repass" placeholder="请再次输入密码" required="">
             </div>
             <div class="info">
                 <label><input class="agree" type="checkbox">我同意注册协议</label>
@@ -33,9 +34,8 @@
             </div>
             <button type="button">注 册</button>
             <p class="tip">
-            	<span>已经有账户了？</span><a href="../login.html">点此登录</a>
+            	<span>已经有账户了？</span><a th:href="@{/user/}">点此登录</a>
             </p>
-
         </form>
     </div>
 <script src="http://resali.huobanplus.com/cdn/jquery/2.2.4/jquery.min.js"></script>
