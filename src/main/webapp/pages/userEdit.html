@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>user</title>
+</head>
+
+<body>
+<!--/*@thymesVar id="user" type="hz.cosylj.myshoppweb.entity.User"*/-->
+<div id="user">
+        <tr>
+            <td>用户名:</td>
+            <td>
+              <input type="text" name="username"  th:value="${user.getUsername()}">
+           </td>
+        </tr>
+       <br>
+
+    <tr>
+        <td>头像:</td>
+        <td>
+            <img class="user-img fl" alt="image" src="../resources/img/profile_small.jpg" th:src="${user.getHeadimg()}"/>
+        </td>
+    </tr>
+    <br>
+
+
+    <tr>
+        <td>用户住址:</td>
+        <td>
+            <input type="text" name="username"  th:value="${user.getAddress()}">
+        </td>
+    </tr>
+    <br>
+
+
+    <tr>
+        <td>用户身份:</td>
+        <td>
+            <input type="text" name="username"  th:value="${user.getUseridentity()}">
+        </td>
+    </tr>
+
+
+
+
+    </table>
+    </div>
+</body>
+</html>

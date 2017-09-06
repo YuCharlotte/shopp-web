@@ -1,15 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="UTF-8">
 	<title>user</title>
 </head>
-<body>
+
+
+    <div>
+		<br><br>
+		根据身份搜索：
+		<select>
+			<option value="1">选择身份进行搜索</option>
+			<option value="1">管理员</option>
+			<option value="1">操作员</option>
+		</select>
+	</div>
+&nbsp   &nbsp  &nbsp;&nbsp   &nbsp  &nbsp;
+    <div>
+		<form>
+
+			根据用户名搜索:
+			<input value="输入姓名进行搜索"/>
+			<button type="submit">搜索</button>
+		</form>
+	</div>
+
+
+   <br><br>
+
+<div>
+   -------------------------------------------------------------------这是华丽的分割线--------------------------------------------------------------------------------------------
+	</div>
 	<div id="user">
-		<div class="search">
-			<input type="text">
-		</div>
-		<div class="user-list"></div>
+		<table  cellspacing="50" cellpadding="15" >
+			<tr>
+				<td>头像</td>
+
+				<td>用户名</td>
+
+				<td>等级</td>
+
+				<td>地址</td>
+
+				<td>操作</td>
+			</tr>
+
+
+			<!--/*@thymesVar id="userlist" type="java.util.List<hz.cosylj.myshoppweb.entity.User>"*/-->
+			<tr th:each="user:${userlist}">
+
+				<td ><img th:width="50"  th:height="50" th:src="${user.getHeadimg()}" /></td>
+
+				<td th:text="${user.getUsername()}">cosylj</td>
+
+				<td th:text="${user.useridentity}">管理员</td>
+
+				<td th:text="${user.getAddress()}">浙江杭州</td>
+
+				<td><a href="#" th:href="@{/user/goToUserList(userId=${user.getId()})}">删除</a>/<a href="#" th:href="@{/user/userEdit(userId=${user.getId()})}">修改</a></td>
+				<!--th:href="@{/user/goToUserList(userId=${user.getId()})}"-->
+			</tr>
+
+		</table>
 	</div>
 </body>
 </html>

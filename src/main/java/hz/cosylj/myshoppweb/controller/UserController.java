@@ -1,8 +1,6 @@
 package hz.cosylj.myshoppweb.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import hz.cosylj.myshoppweb.entity.User;
-import hz.cosylj.myshoppweb.model.ApiResultMode;
 import hz.cosylj.myshoppweb.model.RegisterMode;
 import hz.cosylj.myshoppweb.repository.UserRepository;
 import hz.cosylj.myshoppweb.service.UserOperService;
@@ -10,10 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import java.util.List;
 
 
 /**
@@ -27,43 +24,39 @@ public class UserController {
 
     @Autowired
     private UserOperService userOperService;
-
     @Autowired
     private UserRepository userRepository;
+
+
 
     @RequestMapping(value = "/")
     public String login(){
         return "login.html";
     }
 
+
     /**
-     *
      * 用户登入
      * @param userName
      * @param passWord
      * @return
      */
-
     @RequestMapping(value="/login" )
     public ModelAndView login(@RequestParam(value = "username") String userName, @RequestParam(value = "password") String passWord )
     {
-        /*String name=userName.trim();
-        String word=passWord.trim();*/
-      //  Map<String,Object> userMap=new HashMap<String,Object>();
         ModelAndView modelAndView=new ModelAndView();
         User user= userOperService.login(userName,passWord);
         if (user!=null)
         {
-          //  userMap.put("user",user);
             modelAndView.setViewName("/pages/index.html");
             modelAndView.addObject("user",user);
         }else{
-           // usermap.put("message","用户名或密码错误，请仔细核对！！！");
             modelAndView.setViewName("/login.html");
             modelAndView.addObject("message","用户名或密码错误，请仔细核对！！！");
         }
           return modelAndView;
     }
+
 
 
     /**
@@ -76,7 +69,6 @@ public class UserController {
 
        return "pages/register.html";
     }
-
 
 
     /**
@@ -98,33 +90,38 @@ public class UserController {
     }
 
 
-
-
     /**
-     * 校验用户名是否可以使用
-     *
-     * @param userName  用户名
+     * 检索所有用户信息，并且根据用户id删除用户
+     * @return
      */
-    @RequestMapping(value="/checkUserName",produces = "application/json; charset=utf-8")
-    @ResponseBody
-    public String checkUsername(@RequestParam(value="username") String userName)
+    @RequestMapping(value="/goToUserList")
+    public  ModelAndView goToUserList(String userId)
     {
-
-        ApiResultMode apiResultMode=new ApiResultMode();
-        User user=userRepository.findByUsername(userName);
-        if (user!=null)
+        ModelAndView modelAndView=new ModelAndView();
+        if(userId!=null)
         {
-            apiResultMode.setMessage("该用户已经存在!!");
-            apiResultMode.setCode("400");
-            return JSONObject.toJSONString(apiResultMode);
+            userOperService.delectUser(Long.parseLong(userId));
         }
 
-            apiResultMode.setMessage("该用户不存在!!");
-            apiResultMode.setCode("200");
-            return JSONObject.toJSONString(apiResultMode);
+        List<User> userlist=userOperService.findAllUser();
+        if (userlist.size()>0)
+        {
+            modelAndView.setViewName("pages/users.html");
+            modelAndView.addObject("userlist",userlist);
+        }
+        return modelAndView;
     }
 
-    //忘记密码
 
+    @RequestMapping(value="/userEdit")
+    public ModelAndView userEdit(@RequestParam(value="userId") long userId){
+        ModelAndView modelAndView=new ModelAndView();
 
+        User user=userRepository.findOne(userId);
+        if(user!=null){
+            modelAndView.setViewName("pages/userEdit.html");
+            modelAndView.addObject("user",user);
+        }
+        return modelAndView;
+    }
 }

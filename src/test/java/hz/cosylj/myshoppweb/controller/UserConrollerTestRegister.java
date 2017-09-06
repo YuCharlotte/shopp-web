@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.servlet.View;
+
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -84,6 +84,11 @@ public class UserConrollerTestRegister {
         Assert.assertEquals("400",obj1.get("code"));
     }
 
+
+    /**
+     * 注册时校验用户名，不存在的时候提示"该用户不存在"
+     * @throws Exception
+     */
     @Test
     @Rollback
 

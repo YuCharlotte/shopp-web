@@ -109,7 +109,7 @@ public class MVCConfig extends WebMvcConfigurerAdapter  {
     public ServletContextTemplateResolver viewResolver()
     {
         ServletContextTemplateResolver servletContextTemplateResolver=new ServletContextTemplateResolver(webApplicationContext.getServletContext());
-        servletContextTemplateResolver.setTemplateMode("html5");
+        servletContextTemplateResolver.setTemplateMode("HTML");
 //        servletContextTemplateResolver.setPrefix("/html");
 //        servletContextTemplateResolver.setSuffix(".jsp");
         servletContextTemplateResolver.setCacheTTLMs(3600000L);
@@ -126,7 +126,7 @@ public class MVCConfig extends WebMvcConfigurerAdapter  {
         SpringResourceTemplateResolver springResourceTemplateResolver=new SpringResourceTemplateResolver();
         springResourceTemplateResolver.setApplicationContext(this.applicationContext);
         springResourceTemplateResolver.setCharacterEncoding("utf-8");
-        springResourceTemplateResolver.setTemplateMode("html5");
+        springResourceTemplateResolver.setTemplateMode("HTML");
         //springResourceTemplateResolver.setPrefix("/html");
        // springResourceTemplateResolver.setSuffix(".html");
         springResourceTemplateResolver.setCacheable(true);

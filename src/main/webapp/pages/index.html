@@ -20,10 +20,9 @@
         <ul class="head-right fr">
 	        <li class="user fl">
 	        	<a href="#">
-		        	<img class="user-img fl" alt="image" src="../resources/img/profile_small.jpg" />
+                    <!--/*@thymesVar id="user" type="hz.cosylj.myshoppweb.entity.User"*/-->
+		        	<img class="user-img fl" alt="image" src="../resources/img/profile_small.jpg" th:src="${user.getHeadimg()}"/>
 		        	<div class="user-name fl">
-
-		        		<!--/*@thymesVar id="user" type="hz.cosylj.myshoppweb.entity.User"*/-->
 		        		<span th:text="${user.useridentity}"><strong>Beaut-zihan</strong></span>
 		        	</div>
 	        	</a>
@@ -43,7 +42,7 @@
                 <a class="nav-item" target="iframename" href="../pages/welcome.html">欢迎页</a>
             </li>
             <li>
-                <a class="nav-item" target="iframename" href="../pages/users.html">用户管理</a>
+                <a class="nav-item" target="iframename" href="../pages/users.html" th:href="@{/user/goToUserList}">用户管理</a>
             </li>
             <li>
                 <a class="nav-item" target="iframename" href="../pages/goods.html">商品管理</a>
