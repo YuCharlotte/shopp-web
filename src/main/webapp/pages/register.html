@@ -17,38 +17,116 @@
         <h1 class="logo">Buy+</h1>
         <h3>欢迎注册 Buy+</h3>
         <h4>创建一个Buy+新账户</h4>
-
-
         <!--/*@thymesVar id="registerMode" type="hz.cosylj.myshoppweb.model.RegisterMode"*/-->
-        <form   role="form" th:action="@{/user/register}"  >
-            <div class="form-username">
-
-                <input type="text" placeholder="请输入用户名" required="" name="userName">
+        <form id="verifyform" role="form" th:action="@{/user/register}">
+            <div class="info form-username">
+                <input name="userName" type="text" ver-data="username" placeholder="请输入用户名" required="">
             </div>
-            <div class="form-password">
-
-                <input type="password" placeholder="请输入密码" required="" name="passWord" >
+            <div class="info form-password">
+                <input name="passWord" type="password" ver-data="password" placeholder="请输入密码" required="">
             </div>
-            <div class="form-password">
-
-                <input type="password" placeholder="请再次输入密码" required=""  name="comfigPwd">
+            <div class="info form-password">
+                <input name="comfigPwd" type="password" ver-data="repass" placeholder="请再次输入密码" required="">
             </div>
-            <div class="form-group">
-                <label><input type="checkbox">我同意注册协议</label>
+            <div class="info">
+                <label><input class="agree" type="checkbox">我同意注册协议</label>
+                <span class="read"></span>
             </div>
-            <button type="submit">注 册</button>
+            <button type="button">注 册</button>
             <p class="tip">
-            	<span>已经有账户了？</span><a th:href="@{/user/}" >点此登录</a>
+            	<span>已经有账户了？</span><a th:href="@{/user/}">点此登录</a>
             </p>
-
         </form>
     </div>
-<script src="js/jquery.min.js?v=2.1.4"></script>
-<script src="js/bootstrap.min.js?v=3.3.5"></script>
-<script src="js/plugins/iCheck/icheck.min.js"></script>
+<script src="http://resali.huobanplus.com/cdn/jquery/2.2.4/jquery.min.js"></script>
+<script src="http://resali.huobanplus.com/cdn/bootstrap/3.3.7/bootstrap.min.js"></script>
+<!-- <script src="js/plugins/iCheck/icheck.min.js"></script>
 <script>
     $(document).ready(function(){$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",})});
 </script>
-<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script> -->
 </body>
+<script type="text/javascript">
+    var reg = {
+        username: [/^[a-zA-Z][a-zA-Z0-9_]{5,12}$/, '用户名错误', 'go!'],
+        password: [/[a-zA-Z0-9]{6,15}$/, '密码至少6位', 'go!'],
+        repass: [/[a-zA-Z0-9]{6,15}$/,'请输入与第一次相同的密码', 'go!']
+    }
+
+    var inputs = $('#verifyform').find('input[type!="checkbox"]');
+    var span = $('<span></span>');
+    inputs.parent().append(span);
+
+    var btn = $('#verifyform').find('button');
+
+    //input失去焦点时判断
+    inputs.blur(function() {
+        var value = $(this).val().trim();
+        var key = $(this).attr('ver-data');
+        var required = inputs.attr('required');
+        var newspan = $(this).parent().find('span').removeClass();
+
+        judge(required, value, key, newspan);
+    })
+
+//判断后显示的文字
+function judge(req, v, k, $dom) {
+    if(req) {
+        if(!v) {                
+            $dom.addClass('error').text('不能为空');
+            return false;
+        }            
+    }
+    if(!reg[k][0].test(v)) {
+        $dom.addClass('error').text(reg[k][1]);
+        return false;
+    }
+    if($(this).attr('name') == 'repass') {
+        var txtPass = $('input[name="pass"]').val();
+        if($(this).val() != txtPass) {
+            $dom.addClass('error').text(reg[k][1]);
+            return false;
+        }
+    }
+    $dom.addClass('bingo').text(reg[k][2]);
+    return true;
+}
+
+
+//提交按钮判断
+btn.click(function() {
+    var check = $('input[type="checkbox"]').is(':checked');
+    var flag = false;
+    $.each(inputs, function(i ,v) {
+        var value = $(v).val().trim();
+        var key = $(v).attr('ver-data');
+        var required = inputs.attr('required');
+        var newspan = $(v).parent().find('span').removeClass();
+
+        flag = judge(required, value, key, newspan);
+        
+    })
+    if(flag = true && check) {
+        $('form').submit();
+    } else {
+        $('.read').text('请在申请注册流程中点击同意');
+    }
+})
+
+//发送Ajax查询请求并处理
+var namePost = $('input[name="username"]').val();
+var request = new XMLHttpRequest();
+request.open('POST');
+request.send(namePost);
+request.onreadystatechange = function() {
+    if(request.readyState === 4) {
+        if(request.status ===200) {
+            $('body').html() = request.responseText;
+        } else {
+            alert('发生错误：' + request.status);
+        }
+    }
+}
+
+</script>
 </html>

@@ -9,8 +9,8 @@
 
     <title>ShoppingWeb</title>
 
-    <link rel="stylesheet" type="text/css" href="/assets/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/login.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/login.css">
 </head>
 <body>
     <div class="login">
@@ -25,14 +25,14 @@
             </div>
             <!--/*@thymesVar id="message" type="java.lang.String"*/-->
 
-             <div  th:if="${message != null}" >
-                   <span th:text="${message}">用户名和密码错误</span>
-               </div>
-            <br>
+            <!--/*@thymesVar id="usermap" type="java.util.Map"*/-->
+            <div class="wrong" th:if="${message != null}">
+                <span th:text="${message}">用户名和密码错误</span>
+            </div>
             <button type="submit">登 录</button>
         </form>
         <p class="tip">
-            <a href="#"><span>忘记密码了？</span></a> |<a th:href="@{/user/goToRegisterPage}">注册一个新账号</a><!-- <a href="../pages/register.html">注册一个新账号</a>-->
+            <a href="#"><span>忘记密码了？</span></a> | <a th:href="@{/user/goToRegisterPage}">注册一个新账号</a><!-- <a href="../pages/register.html">注册一个新账号</a>-->
         </p>
     </div>
 </body>
