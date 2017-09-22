@@ -1,13 +1,14 @@
 package hz.cosylj.myshoppweb.controller;
 
 import hz.cosylj.myshoppweb.entity.User;
-import hz.cosylj.myshoppweb.model.RegisterMode;
+import hz.cosylj.myshoppweb.model.ApiResultMode;
 import hz.cosylj.myshoppweb.repository.UserRepository;
 import hz.cosylj.myshoppweb.service.UserOperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -29,11 +30,20 @@ public class UserController {
 
 
 
-    @RequestMapping(value = "/")
+ /*  @RequestMapping(value = "/login")
     public String login(){
+      *//* Timer timer=new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("++++++++++++++++++++任务执行时间"+new Date());
+            }
+        },5000);
+        System.out.println("+++++++++++++++++现在时间"+new Date());*//*
+
         return "login.html";
     }
-
+*/
 
     /**
      * 用户登入
@@ -59,30 +69,17 @@ public class UserController {
 
 
 
-    /**
-     * 跳转到用户注册页面
-     */
-
-    @RequestMapping(value = "/goToRegisterPage")
-    public  String goToRegisterPage()
-    {
-
-       return "pages/register.html";
-    }
 
 
     /**
      * 用户注册,成功进入login页
-     * @param RegisterMode
+     * @param user
      */
     @RequestMapping(value = "/register")
-    public String register(RegisterMode RegisterMode)
+    public String register(User user)
     {
-        if (RegisterMode!=null)
+        if (user!=null)
         {
-            User user=new User();
-            user.setUsername(RegisterMode.getUserName());
-            user.setPassword(RegisterMode.getPassWord());
             userOperService.registerUser(user);
             return "login.html";
         }
@@ -91,19 +88,23 @@ public class UserController {
 
 
     /**
-     * 检索所有用户信息，并且根据用户id删除用户
+     * 检索所有用户信息，并且根据用户id删除，编辑用户
      * @return
      */
     @RequestMapping(value="/goToUserList")
     public  ModelAndView goToUserList(String userId)
     {
         ModelAndView modelAndView=new ModelAndView();
+        List<User> userlist;
+        //删除用户
         if(userId!=null)
         {
             userOperService.delectUser(Long.parseLong(userId));
+
         }
 
-        List<User> userlist=userOperService.findAllUser();
+        //检索用户
+        userlist=userOperService.findAllUser();
         if (userlist.size()>0)
         {
             modelAndView.setViewName("pages/users.html");
@@ -113,6 +114,11 @@ public class UserController {
     }
 
 
+    /**
+     * 编辑商品时获得商品
+     * @param userId
+     * @return
+     */
     @RequestMapping(value="/userEdit")
     public ModelAndView userEdit(@RequestParam(value="userId") long userId){
         ModelAndView modelAndView=new ModelAndView();
@@ -124,4 +130,29 @@ public class UserController {
         }
         return modelAndView;
     }
+
+    @RequestMapping(value = "/userUpdate",produces = "application/json")
+
+    public @ResponseBody ApiResultMode updateUser(){
+        //编辑用户
+
+         /*   if(user.getUsername()==null&&user.getUsername()=="") {
+                return new ApiResultMode("用户名不能为空");
+            }
+            if(user.getAddress()==null)
+            {
+                return new ApiResultMode("地址不能为空");
+            }
+            if(user.getUseridentity()==null)
+            {
+                return new ApiResultMode("等级不能为空");
+            }*/
+        ApiResultMode apiResultMode=new ApiResultMode();
+        apiResultMode.setMessage("你成功了");
+
+        return  apiResultMode;
+
+    }
+
+
 }

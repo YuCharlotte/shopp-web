@@ -21,6 +21,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 
+
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -57,17 +62,23 @@ public class eventest
     @Test
     public  void aa() throws Exception
     {
-/*
-
-        UserOperService UserOperService=new findUserImpl();
-        UserOperService.login("cosylj","123456");
-*/
-
-
         mockMvc.perform(get("/bbb/aa").param("goodsname","cosygood").param("username","cosylj")).andExpect(status().isOk());
         System.out.print("这是aaa的测试.....");
 
     }
 
 
+    @Test
+    public  void  testSchedule1()throws Exception{
+        Timer timer=new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+               System.out.println("++++++++++++++++++++任务执行时间"+new Date());
+            }
+        },5000);
+
+
+        System.out.println("+++++++++++++++++现在时间"+new Date());
+    }
 }

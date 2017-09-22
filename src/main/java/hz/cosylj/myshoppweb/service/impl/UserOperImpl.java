@@ -104,5 +104,12 @@ public class UserOperImpl implements UserOperService {
 
     }
 
+    /**
+     * 更新用户信息，用于编辑
+     */
+    public void updateUser(User user){
+
+    }
+
 
 }

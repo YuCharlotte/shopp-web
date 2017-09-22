@@ -28,4 +28,29 @@ public class ApiResultMode {
      * 数据
      */
     private  Object date;
+
+
+    public ApiResultMode()
+    {
+           super();
+    }
+
+    public ApiResultMode(String message){
+        this.message=message;
+    }
+
+    public ApiResultMode(String message,String code){
+        this.message=message;
+        this.code=code;
+    }
+
+
+    @Override
+    public String toString(){
+        return "ApiResult{" +
+                "msg='" + message + '\'' +
+                ", code=" + code +
+                ", data=" + date +
+                '}';
+    }
 }

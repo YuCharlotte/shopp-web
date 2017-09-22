@@ -24,4 +24,6 @@ public interface UserOperService {
      List<User> findAllUser();
 
      void delectUser(Long userId);
+
+     void updateUser(User user);
 }

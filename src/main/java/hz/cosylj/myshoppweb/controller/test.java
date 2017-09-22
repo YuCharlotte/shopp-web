@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Date;
+import java.util.TimerTask;
+
 /**
  * Created by cosy on 2016/9/29.
  */
@@ -16,15 +19,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class test {
 
-
-
     @Autowired
     private UserRepository userRepository;
 
     @RequestMapping(value = "/aa", method = RequestMethod.GET)
     public String indext(String username,  String goodsname) {
-
-
         User user=new User();
         user.setId(12L);
         user.setUsername("liko");
@@ -40,6 +39,6 @@ public class test {
 
         System.out.println("---------------"+user1.getId()+"--------------"+user1.getUsername()+"--------");
         return "/login_v2.html";
-
     }
+
 }

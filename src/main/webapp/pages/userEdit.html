@@ -9,44 +9,43 @@
 
 <body>
 <!--/*@thymesVar id="user" type="hz.cosylj.myshoppweb.entity.User"*/-->
-<div id="user">
+<form role="form" method="post" th:action="@{/user/userUpdate}">
+<div>
+    <table>
         <tr>
             <td>用户名:</td>
-            <td>
-              <input type="text" name="username"  th:value="${user.getUsername()}">
-           </td>
+            <td><input type="text" name="username" ver-data="username" th:value="${user.getUsername()}" required=""></td>
         </tr>
        <br>
 
     <tr>
         <td>头像:</td>
-        <td>
-            <img class="user-img fl" alt="image" src="../resources/img/profile_small.jpg" th:src="${user.getHeadimg()}"/>
-        </td>
+        <td><img class="user-img fl" name="headimg" alt="image" src="../resources/img/profile_small.jpg" th:src="${user.getHeadimg()}"/></td>
     </tr>
     <br>
 
 
     <tr>
         <td>用户住址:</td>
-        <td>
-            <input type="text" name="username"  th:value="${user.getAddress()}">
-        </td>
+        <td><input type="text" name="address"  th:value="${user.getAddress()}"></td>
     </tr>
     <br>
 
 
     <tr>
         <td>用户身份:</td>
-        <td>
-            <input type="text" name="username"  th:value="${user.getUseridentity()}">
-        </td>
+        <td><input type="text" name="useridentity"  th:value="${user.getUseridentity()}"></td>
     </tr>
 
+    <br>
+    <tr>
+        <td> <button type="submit">确 定</button></td>
 
-
+        <td><button type="button">取 消</button></td>
+    </tr>
 
     </table>
     </div>
+    </form>
 </body>
 </html>

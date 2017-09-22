@@ -6,14 +6,19 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
-import org.springframework.core.env.Environment;
+
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+
+
+import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
+
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
@@ -22,7 +27,8 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
-
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -59,11 +65,59 @@ public class MVCConfig extends WebMvcConfigurerAdapter  {
 
 
 
+  //配置消息转换器
+
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON));
+        converters.add(converter);
+    }
+
+
+
+
+
+
+
+ /*   @Override
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        //移除原来的Jackson Converter 加入新的MessageConverter
+        HttpMessageConverter mappingJackson2XmlHttpMessageConverter;
+        HttpMessageConverter mappingJackson2HttpMessageConverter = null;
+        if (converters.stream().anyMatch(converter -> converter instanceof MappingJackson2HttpMessageConverter)) {
+            mappingJackson2HttpMessageConverter = converters.stream()
+                    .filter(converter -> converter instanceof MappingJackson2HttpMessageConverter)
+                    .findAny().get();
+            converters.remove(mappingJackson2HttpMessageConverter);
+        }
+        if (converters.stream().anyMatch(converter -> converter instanceof MappingJackson2XmlHttpMessageConverter)) {
+            mappingJackson2XmlHttpMessageConverter = converters.stream()
+                    .filter(converter -> converter instanceof MappingJackson2XmlHttpMessageConverter)
+                    .findAny().get();
+            converters.remove(mappingJackson2XmlHttpMessageConverter);
+        }
+        if (mappingJackson2HttpMessageConverter != null && !converters.contains(mappingJackson2HttpMessageConverter))
+            converters.add(mappingJackson2HttpMessageConverter);
+    }
+*/
+
+
+
+    @Override
+    public void  addViewControllers(ViewControllerRegistry registry){
+        registry.addViewController("/login").setViewName("login.html");
+        registry.addViewController("/goToRegisterPage").setViewName("pages/register.html");
+    }
+
+
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         super.configureViewResolvers(registry);
         registry.viewResolver(thymeleafViewResolver());
+       // registry.enableContentNegotiation(new MappingJackson2JsonView());
     }
+
 
 
 

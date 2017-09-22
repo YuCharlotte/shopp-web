@@ -9,8 +9,8 @@
 
     <title>ShoppingWeb</title>
 
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/login.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css" th:href="@{/assets/css/reset.css}">
+    <link rel="stylesheet" type="text/css" href="assets/css/login.css" th:href="@{/assets/css/login.css}">
 </head>
 <body>
     <div class="login">
@@ -32,7 +32,7 @@
             <button type="submit">登 录</button>
         </form>
         <p class="tip">
-            <a href="#"><span>忘记密码了？</span></a> | <a th:href="@{/user/goToRegisterPage}">注册一个新账号</a><!-- <a href="../pages/register.html">注册一个新账号</a>-->
+            <a href="#"><span>忘记密码了？</span></a> | <a th:href="@{/goToRegisterPage}">注册一个新账号</a><!-- <a href="../pages/register.html">注册一个新账号</a>-->
         </p>
     </div>
 </body>
