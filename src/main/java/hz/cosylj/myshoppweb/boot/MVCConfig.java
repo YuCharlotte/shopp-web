@@ -3,6 +3,7 @@ package hz.cosylj.myshoppweb.boot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
@@ -14,11 +15,13 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 
-import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
+
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.config.annotation.*;
 
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
@@ -64,10 +67,13 @@ public class MVCConfig extends WebMvcConfigurerAdapter  {
     }
 
 
-
-  //配置消息转换器
+    /**
+     *
+     配置消息转换器
+     * @param converters
 
     @Override
+     */
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
         converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -111,16 +117,33 @@ public class MVCConfig extends WebMvcConfigurerAdapter  {
     }
 
 
+
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         super.configureViewResolvers(registry);
         registry.viewResolver(thymeleafViewResolver());
-       // registry.enableContentNegotiation(new MappingJackson2JsonView());
+       // registry.jsp("/WEB-INF/",".jsp");
+       // registry.enableContentNegotiation(new MappingJackson2JsonView());//内容协商视图解析器
+
     }
 
 
+ /*   *//**
+     * 配置内容协商视图解析器规则
+     * *//*
 
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+        super.configureContentNegotiation(configurer);
+        configurer.favorPathExtension(true)
+                  .ignoreAcceptHeader(true)
+                  .parameterName("mediaType")
+                  .defaultContentType(MediaType.TEXT_HTML)
+                  .mediaType("html", MediaType.TEXT_HTML)
+                  .mediaType("json",MediaType.APPLICATION_JSON);
 
+    }
+*/
 
 
 /*
@@ -133,17 +156,17 @@ public class MVCConfig extends WebMvcConfigurerAdapter  {
 */
 
 
-
-   /* @Bean
+/*
+    @Bean
     public InternalResourceViewResolver getInternalResourceViewResolver()
     {
-        InternalResourceViewResolver  resolver=new InternalResourceViewResolver ();
-        //resolver.setPrefix("/html");
-       // resolver.setSuffix(".jsp");
+        InternalResourceViewResolver  resolver=new InternalResourceViewResolver();
+        resolver.setPrefix("/WEB-INF/");
+        resolver.setSuffix(".jsp");
 
         return resolver;
-    }
-*/
+    }*/
+
 
 
 

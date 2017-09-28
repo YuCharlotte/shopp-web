@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -131,28 +133,22 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/userUpdate",produces = "application/json")
-
-    public @ResponseBody ApiResultMode updateUser(){
+    @RequestMapping(value = "/userUpdate", produces = "application/json")
+    public @ResponseBody ApiResultMode updateUser(User user) {
         //编辑用户
 
-         /*   if(user.getUsername()==null&&user.getUsername()=="") {
-                return new ApiResultMode("用户名不能为空");
-            }
-            if(user.getAddress()==null)
-            {
-                return new ApiResultMode("地址不能为空");
-            }
-            if(user.getUseridentity()==null)
-            {
-                return new ApiResultMode("等级不能为空");
-            }*/
-        ApiResultMode apiResultMode=new ApiResultMode();
+        if (user.getUsername() == null && user.getUsername() == "") {
+            return new ApiResultMode("用户名不能为空");
+        }
+        if (user.getAddress() == null) {
+            return new ApiResultMode("地址不能为空");
+        }
+        if (user.getUseridentity() == null) {
+            return new ApiResultMode("等级不能为空");
+        }
+        System.out.println("==============" + user.getUsername());
+        ApiResultMode apiResultMode = new ApiResultMode();
         apiResultMode.setMessage("你成功了");
-
-        return  apiResultMode;
-
+        return apiResultMode;
     }
-
-
 }
