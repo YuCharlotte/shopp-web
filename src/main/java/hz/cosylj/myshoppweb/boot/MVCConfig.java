@@ -121,16 +121,15 @@ public class MVCConfig extends WebMvcConfigurerAdapter  {
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         super.configureViewResolvers(registry);
-        registry.viewResolver(thymeleafViewResolver());
-       // registry.jsp("/WEB-INF/",".jsp");
+         registry.viewResolver(thymeleafViewResolver());
+        // registry.jsp("/",".html");
        // registry.enableContentNegotiation(new MappingJackson2JsonView());//内容协商视图解析器
-
     }
 
 
- /*   *//**
+/**
      * 配置内容协商视图解析器规则
-     * *//*
+     * *
 
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {

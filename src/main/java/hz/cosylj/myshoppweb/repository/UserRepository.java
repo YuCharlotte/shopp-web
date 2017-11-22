@@ -4,6 +4,8 @@ import hz.cosylj.myshoppweb.entity.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 
 
 /**
@@ -14,13 +16,14 @@ public interface UserRepository extends JpaRepository<User,Long>, JpaSpecificati
 
 
    /*
-
+.
       根据用户名获取用户
 
   */
 
     User findByUsername(String username);
 
-
-
+    @Modifying
+    @Query("update User u where id=?1")
+    void updateUser(Long id);
 }

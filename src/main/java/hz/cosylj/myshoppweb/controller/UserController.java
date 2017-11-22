@@ -133,7 +133,7 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/userUpdate", produces = "application/json")
+    @RequestMapping(value = "/userUpdate" , produces = "application/json")
     public @ResponseBody ApiResultMode updateUser(User user) {
         //编辑用户
 
@@ -148,7 +148,12 @@ public class UserController {
         }
         System.out.println("==============" + user.getUsername());
         ApiResultMode apiResultMode = new ApiResultMode();
-        apiResultMode.setMessage("你成功了");
+
+        if (user!=null){
+
+        }
+
         return apiResultMode;
+
     }
 }

@@ -81,4 +81,13 @@ public class eventest
 
         System.out.println("+++++++++++++++++现在时间"+new Date());
     }
+
+
+    @Test
+    public void  testCallBack(){
+        callBackB callBackB=new callBackB();
+        callBackA callBackA=new callBackA();
+        callBackB.answer(callBackA);
+
+    }
 }
