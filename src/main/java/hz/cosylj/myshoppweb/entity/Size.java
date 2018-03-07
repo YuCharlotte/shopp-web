@@ -19,7 +19,7 @@ public class Size {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Id")
+    @Column(name="Size_Id")
     private Long id;
 
     /**

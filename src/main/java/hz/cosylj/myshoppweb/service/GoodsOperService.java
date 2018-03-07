@@ -7,5 +7,5 @@ import hz.cosylj.myshoppweb.entity.Goods;
  */
 public interface GoodsOperService {
 
-    Goods findAllGoods();
+    Goods findGoodsByGoodid(int id);
 }
