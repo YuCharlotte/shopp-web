@@ -83,11 +83,5 @@ public class eventest
     }
 
 
-    @Test
-    public void  testCallBack(){
-        callBackB callBackB=new callBackB();
-        callBackA callBackA=new callBackA();
-        callBackB.answer(callBackA);
 
-    }
 }
