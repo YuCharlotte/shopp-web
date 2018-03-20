@@ -26,9 +26,8 @@ public class Color {
     @Column(name="colorName")
     private String colorName;
 
-    @ManyToOne(targetEntity = Size.class)
-    @JoinColumn(name="Size_Id")
-    private List<Size> sizes;
+    @OneToMany( targetEntity= Size.class)
+    private List sizeList;
 
 
 

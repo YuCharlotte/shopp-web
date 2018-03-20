@@ -4,10 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.xml.bind.PrintConversionEvent;
-import java.awt.*;
-import java.awt.Color;
-import java.util.*;
 import java.util.List;
 
 /**
@@ -49,8 +45,7 @@ public class Goods {
     /**
      * 商品颜色
      */
-    @OneToMany(targetEntity = Color.class)
-    @JoinColumn(name="Color_Id")
-    private List<Color> color;
+    @OneToMany( targetEntity=Color.class )
+    private List colorList;
 
 }

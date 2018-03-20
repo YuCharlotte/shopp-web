@@ -29,6 +29,5 @@ public class Size {
     private String SizeName;
 
 
-    @ManyToOne
-    private Color color;
+
 }

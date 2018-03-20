@@ -1,5 +1,6 @@
 package hz.cosylj.myshoppweb.controller;
 
+
 import hz.cosylj.myshoppweb.entity.User;
 import hz.cosylj.myshoppweb.model.ApiResultMode;
 import hz.cosylj.myshoppweb.repository.UserRepository;
@@ -53,6 +54,7 @@ public class UserController {
      * @param passWord
      * @return
      */
+
     @RequestMapping(value="/login" )
     public ModelAndView login(@RequestParam(value = "username") String userName, @RequestParam(value = "password") String passWord )
     {
@@ -68,6 +70,7 @@ public class UserController {
         }
           return modelAndView;
     }
+
 
 
 
@@ -156,4 +159,7 @@ public class UserController {
         return apiResultMode;
 
     }
+
+
+
 }

@@ -1,5 +1,7 @@
 package hz.cosylj.myshoppweb.controller;
 
+import com.hz.cosy.webdriver.utils.initWebDriver;
+import com.hz.cosy.webdriver.utils.webDriverCosy;
 import hz.cosylj.myshoppweb.boot.MVCConfig;
 
 
@@ -81,6 +83,8 @@ public class eventest
 
         System.out.println("+++++++++++++++++现在时间"+new Date());
     }
+
+
 
 
 
